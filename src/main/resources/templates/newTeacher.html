@@ -1,0 +1,38 @@
+<!--Form thêm mới giáo viên-->
+
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add Teacher</title>
+</head>
+<body>
+
+<h2>Add Teacher</h2>
+
+<form th:action="@{/teachers/save}" th:object="${teacher}" method="post">
+
+    <input type="text" th:field="*{teacherCode}" placeholder="Teacher Code">
+    <br><br>
+
+    <input type="text" th:field="*{teacherName}" placeholder="Teacher Name">
+    <br><br>
+
+    <input type="text" th:field="*{teacherEmail}" placeholder="Email">
+    <br><br>
+
+    <input type="text" th:field="*{teacherPhone}" placeholder="Phone">
+    <br><br>
+
+    <input type="text" th:field="*{teacherSubject}" placeholder="Subject">
+    <br><br>
+
+    <input type="number" th:field="*{teacherSalary}" placeholder="Salary">
+    <br><br>
+
+    <button type="submit">Save</button>
+
+</form>
+
+</body>
+</html>

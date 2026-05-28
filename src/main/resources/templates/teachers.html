@@ -1,0 +1,123 @@
+<!--Hiển thị danh sách giáo viên-->
+
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Danh sách giáo viên</title>
+
+    <style>
+
+        body{
+            font-family: Arial;
+            margin: 40px;
+        }
+
+        table{
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        table, th, td{
+            border: 1px solid black;
+        }
+
+        th, td{
+            padding: 10px;
+            text-align: center;
+        }
+
+        a{
+            text-decoration: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+
+        .add-btn{
+            background-color: green;
+            color: white;
+        }
+
+        .edit-btn{
+            background-color: orange;
+            color: white;
+        }
+
+        .delete-btn{
+            background-color: red;
+            color: white;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<h1>Danh sách giáo viên</h1>
+
+<br>
+
+<a href="/addTeacher" class="add-btn">
+    Thêm mới giáo viên
+</a>
+
+<br><br>
+
+<table>
+
+    <thead>
+
+    <tr>
+        <th>ID</th>
+        <th>Code</th>
+        <th>Họ và Tên</th>
+        <th>Email</th>
+        <th>Số điện thoại</th>
+        <th>Môn học</th>
+        <th>Lương</th>
+        <th>Thao tác</th>
+    </tr>
+
+    </thead>
+
+    <tbody>
+
+    <tr th:each="teacher : ${teachers}">
+
+        <td th:text="${teacher.id}"></td>
+
+        <td th:text="${teacher.teacherCode}"></td>
+
+        <td th:text="${teacher.teacherName}"></td>
+
+        <td th:text="${teacher.teacherEmail}"></td>
+
+        <td th:text="${teacher.teacherPhone}"></td>
+
+        <td th:text="${teacher.teacherSubject}"></td>
+
+        <td th:text="${teacher.teacherSalary}"></td>
+
+        <td>
+
+            <a th:href="@{/teachers/edit/{id}(id=${teacher.id})}"
+               class="edit-btn">
+                Chỉnh sửa
+            </a>
+
+            <a th:href="@{/teachers/delete/{id}(id=${teacher.id})}"
+               class="delete-btn">
+                Xóa
+            </a>
+
+        </td>
+
+    </tr>
+
+    </tbody>
+
+</table>
+
+</body>
+</html>
