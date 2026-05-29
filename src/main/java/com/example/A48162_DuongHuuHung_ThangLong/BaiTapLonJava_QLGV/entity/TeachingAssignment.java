@@ -24,19 +24,30 @@ public class TeachingAssignment {
     @Column(name = "end_date")
     private LocalDate endDate;
 
-    @OneToMany
+    //Trạng thái phân công (VD: Đang dạy, Đã hoàn thành, Đã hủy)
+    private String status;
+
+    //@OneToMany -> @ManyToOne
+    //Bảng TeachingAssignment là bảng phụ Nhiều-Nhiều.
+    // Nhiều phân công có thể cùng trỏ về 1 lớp học, 1 giáo viên, 1 môn, 1 học kỳ.
+    @ManyToOne
     @JoinColumn(name = "classroom_id")
     private Classroom classroom;
 
-    @OneToMany
+    // Lớp sinh viên tham gia khóa học này
+    @ManyToOne
+    @JoinColumn(name = "student_class_id")
+    private StudentClass studentClass;
+
+    @ManyToOne
     @JoinColumn(name = "teacher_id")
     private Teacher teacher;
 
-    @OneToMany
+    @ManyToOne
     @JoinColumn(name = "subject_id")
     private Subject subject;
 
-    @OneToMany
+    @ManyToOne
     @JoinColumn(name = "semester_id")
     private Semester semester;
 }

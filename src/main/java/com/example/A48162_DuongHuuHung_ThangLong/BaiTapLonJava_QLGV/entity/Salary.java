@@ -3,6 +3,7 @@ package com.example.A48162_DuongHuuHung_ThangLong.BaiTapLonJava_QLGV.entity;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.math.BigDecimal; // Import BigDecimal
 import java.time.LocalDate;
 
 @Data
@@ -20,17 +21,18 @@ public class Salary {
     @Column(name = "total_hours")
     private Double totalHours;
 
-    private Double bonus;
+    private BigDecimal bonus;
 
-    private double deduction;
+    private BigDecimal deduction;
 
     @Column(name = "total_salary")
-    private Double totalSalary;
+    private BigDecimal totalSalary;
 
     @Column(name = "create_date")
     private LocalDate createDate;
 
-    @OneToMany
+//   Một giáo viên có nhiều bản ghi lương trong các tháng khác nhau
+    @ManyToOne
     @JoinColumn(name = "teacher_id")
     private Teacher teacher;
 }

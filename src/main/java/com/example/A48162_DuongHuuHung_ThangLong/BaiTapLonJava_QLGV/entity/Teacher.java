@@ -39,11 +39,13 @@ public class Teacher {
 
     private String avatar;
 
-    @OneToMany
+    //@OneToMany -> @ManyToOne (Nhiều giáo viên thuộc 1 Bộ môn)
+    @ManyToOne
     @JoinColumn(name = "department_id")
     private Department department;
 
-    @OneToMany
+    //@OneToMany -> @OneToOne (Mỗi giáo viên ứng với duy nhất 1 tài khoản)
+    @OneToOne
     @JoinColumn(name = "users_id")
-    private Users users;
+    private User user;
 }

@@ -9,13 +9,14 @@ import lombok.Data;
 public class Subject {
     @Id
     @Column(name = "subject_id")
-    private String subject_id;
+    private String subjectId;
 
     private int credits; //Số tín chỉ
 
     private String description;
 
-    @OneToMany
+//    @OneToMany -> @ManyToOne (Nhiều môn học thuộc 1 Bộ môn)
+    @ManyToOne
     @JoinColumn(name = "department_id")
-    private Department departments;
+    private Department department;
 }

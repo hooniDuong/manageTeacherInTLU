@@ -7,11 +7,11 @@ import java.time.LocalDate;
 
 @Data
 @Entity
-@Table(name = "users")
-public class Users {
+@Table(name = "user")
+public class User {
     @Id
-    @Column(name = "users_id")
-    private String usersId;
+    @Column(name = "user_id")
+    private String userId;
 
     private String username;
 
@@ -23,7 +23,9 @@ public class Users {
 
     private LocalDate createDate;
 
-    @OneToOne
+    //@OneToOne -> @ManyToOne
+    //Nhiều User có thể chia sẻ chung 1 Role (VD: nhiều người có quyền TEACHER)
+    @ManyToOne
     @JoinColumn(name = "role_id")
     private Role role;
 

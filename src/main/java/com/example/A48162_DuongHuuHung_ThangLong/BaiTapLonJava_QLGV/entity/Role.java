@@ -10,7 +10,7 @@ import org.springframework.core.SpringVersion;
 public class Role {
     @Id
     @Column(name = "role_id")
-    private String roleID;
+    private String roleId;
 
     private String roleName;
 }
