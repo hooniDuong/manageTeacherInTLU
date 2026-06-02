@@ -1,13 +1,84 @@
-<!--Form chỉnh sửa giáo viên-->
-
-
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Chỉnh sửa thông tin Giảng viên</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
-
+    <h1>Cập nhật hồ sơ Giảng viên</h1>
+    <form th:action="@{/teachers/update/{id}(id=${id})}" th:object="${teacher}" method="post">
+        <div class="form-group">
+            <label>Mã giảng viên (Không thể sửa):</label>
+            <input type="text" th:field="*{teacherId}" readonly style="background-color: #eee;" />
+        </div>
+        <div class="form-group">
+            <label>Họ và tên giảng viên:</label>
+            <input type="text" th:field="*{name}" required />
+        </div>
+        <div class="form-group">
+            <label>Giới tính:</label>
+            <select th:field="*{gender}">
+                <option value="Nam">Nam</option>
+                <option value="Nữ">Nữ</option>
+                <option value="Khác">Khác</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Ngày sinh:</label>
+            <input type="date" th:field="*{birthday}" required />
+        </div>
+        <div class="form-group">
+            <label>Địa chỉ Email:</label>
+            <input type="email" th:field="*{email}" />
+        </div>
+        <div class="form-group">
+            <label>Số điện thoại:</label>
+            <input type="text" th:field="*{phone}" />
+        </div>
+        <div class="form-group">
+            <label>Địa chỉ:</label>
+            <input type="text" th:field="*{address}" />
+        </div>
+        <div class="form-group">
+            <label>Học vị / Học hàm:</label>
+            <select th:field="*{degree}">
+                <option value="Thạc sĩ">Thạc sĩ</option>
+                <option value="Tiến sĩ">Tiến sĩ</option>
+                <option value="Phó Giáo sư">Phó Giáo sư</option>
+                <option value="Giáo sư">Giáo sư</option>
+                <option value="Cử nhân">Cử nhân (Trợ giảng)</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Chức vụ:</label>
+            <input type="text" th:field="*{position}" />
+        </div>
+        <div class="form-group">
+            <label>Ngày tuyển dụng:</label>
+            <input type="date" th:field="*{hireDate}" required />
+        </div>
+        <div class="form-group">
+            <label>Lương đề xuất:</label>
+            <input type="number" th:field="*{salary}" />
+        </div>
+        <div class="form-group">
+            <label>Trạng thái nhân sự:</label>
+            <select th:field="*{status}">
+                <option value="Đang làm việc">Đang làm việc</option>
+                <option value="Nghỉ phép">Nghỉ phép</option>
+                <option value="Đã nghỉ việc">Đã nghỉ việc</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Mã Bộ môn quản lý (Department ID):</label>
+            <input type="text" th:field="*{departmentId}" required />
+        </div>
+        <div class="form-group">
+            <label>Mã tài khoản (User ID - nếu có):</label>
+            <input type="text" th:field="*{userId}" />
+        </div>
+        <button type="submit">Cập nhật hồ sơ</button>
+    </form>
+    <a href="/teachers" class="back-link">Quay lại danh sách</a>
 </body>
 </html>

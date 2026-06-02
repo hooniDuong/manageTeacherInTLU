@@ -29,4 +29,7 @@ public class Contract {
     @ManyToOne
     @JoinColumn(name = "teacher_id")
     private Teacher teacher;
+
+    @Column(name = "status")
+    private String status;
 }

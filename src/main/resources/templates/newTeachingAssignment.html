@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Thêm mới Phân công giảng dạy</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <h1>Thêm mới Phân công giảng dạy</h1>
+    <form th:action="@{/teachingassignments/save}" th:object="${obj}" method="post">
+        <div class="form-group">
+            <label>Mã phân công (ID):</label>
+            <input type="text" th:field="*{assignmentId}" required />
+        </div>
+        <div class="form-group">
+            <label>Mã giảng viên:</label>
+            <input type="text" th:field="*{teacherId}" required />
+        </div>
+        <div class="form-group">
+            <label>Mã môn học:</label>
+            <input type="text" th:field="*{subjectId}" required />
+        </div>
+        <div class="form-group">
+            <label>Mã lớp sinh viên:</label>
+            <input type="text" th:field="*{studentClassId}" required />
+        </div>
+        <div class="form-group">
+            <label>Mã phòng học:</label>
+            <input type="text" th:field="*{classroomId}" required />
+        </div>
+        <div class="form-group">
+            <label>Mã học kỳ:</label>
+            <input type="text" th:field="*{semesterId}" required />
+        </div>
+        <div class="form-group">
+            <label>Số giờ giảng dạy:</label>
+            <input type="number" th:field="*{hours}" required />
+        </div>
+        <div class="form-group">
+            <label>Lịch trình / Thứ tiết học:</label>
+            <input type="text" th:field="*{schedule}" required />
+        </div>
+        <div class="form-group">
+            <label>Ngày bắt đầu:</label>
+            <input type="date" th:field="*{startDate}" required />
+        </div>
+        <div class="form-group">
+            <label>Ngày kết thúc:</label>
+            <input type="date" th:field="*{endDate}" required />
+        </div>
+        <div class="form-group">
+            <label>Trạng thái phân công:</label>
+            <select th:field="*{status}">
+                <option value="Đang tiến hành">Đang tiến hành</option>
+                <option value="Đã hoàn thành">Đã hoàn thành</option>
+                <option value="Đã hủy">Đã hủy</option>
+            </select>
+        </div>
+        <button type="submit">Lưu lại</button>
+    </form>
+    <a href="/teachingassignments" class="back-link">Quay lại danh sách</a>
+</body>
+</html>

@@ -1,123 +1,76 @@
-<!--Hiển thị danh sách giáo viên-->
-
-
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Danh sách giáo viên</title>
-
-    <style>
-
-        body{
-            font-family: Arial;
-            margin: 40px;
-        }
-
-        table{
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        table, th, td{
-            border: 1px solid black;
-        }
-
-        th, td{
-            padding: 10px;
-            text-align: center;
-        }
-
-        a{
-            text-decoration: none;
-            padding: 5px 10px;
-            border-radius: 5px;
-        }
-
-        .add-btn{
-            background-color: green;
-            color: white;
-        }
-
-        .edit-btn{
-            background-color: orange;
-            color: white;
-        }
-
-        .delete-btn{
-            background-color: red;
-            color: white;
-        }
-
-    </style>
-
+    <meta charset="UTF-8">
+    <title>Danh sách Giảng viên</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
-
 <body>
 
-<h1>Danh sách giáo viên</h1>
+    <!-- NAVBAR: hiển thị tên đăng nhập, quyền, nút đăng xuất -->
+    <nav class="navbar">
+        <div class="nav-brand">Quản lý Giáo viên — ĐH Thăng Long</div>
+        <div class="nav-right">
+            <span>Xin chào, <strong th:text="${loggedUser.username}">admin</strong></span>
+            <span class="role-badge" th:classappend="${userRole == 'ADMIN'} ? 'admin' : ''" th:text="${userRole}">ROLE</span>
+            <a href="/logout" class="logout-btn">Đăng xuất</a>
+        </div>
+    </nav>
 
-<br>
+    <div class="content">
+        <h1>Quản lý Giảng viên</h1>
 
-<a href="/addTeacher" class="add-btn">
-    Thêm mới giáo viên
-</a>
+        <!--
+            Chỉ ADMIN mới thấy nút "Thêm mới"
+            th:if="${userRole == 'ADMIN'} → ẩn hoàn toàn với TEACHER
+        -->
+        <a href="/teachers/new" class="add-btn" th:if="${userRole == 'ADMIN'}">Thêm mới</a>
+        <a href="/" class="back-btn">Trang chủ</a>
 
-<br><br>
+        <!-- Ô tìm kiếm (tất cả mọi quyền đều được dùng) -->
+        <div class="search-container">
+            <form th:action="@{/teachers}" method="get">
+                <input type="text" name="search" th:value="${search}" placeholder="Tìm kiếm theo tên..." class="search-input">
+                <button type="submit" class="search-btn">Tìm kiếm</button>
+                <a th:if="${search != null and search != ''}" href="/teachers" class="clear-btn">Hủy</a>
+            </form>
+        </div>
 
-<table>
-
-    <thead>
-
-    <tr>
-        <th>ID</th>
-        <th>Code</th>
-        <th>Họ và Tên</th>
-        <th>Email</th>
-        <th>Số điện thoại</th>
-        <th>Môn học</th>
-        <th>Lương</th>
-        <th>Thao tác</th>
-    </tr>
-
-    </thead>
-
-    <tbody>
-
-    <tr th:each="teacher : ${teachers}">
-
-        <td th:text="${teacher.id}"></td>
-
-        <td th:text="${teacher.teacherCode}"></td>
-
-        <td th:text="${teacher.teacherName}"></td>
-
-        <td th:text="${teacher.teacherEmail}"></td>
-
-        <td th:text="${teacher.teacherPhone}"></td>
-
-        <td th:text="${teacher.teacherSubject}"></td>
-
-        <td th:text="${teacher.teacherSalary}"></td>
-
-        <td>
-
-            <a th:href="@{/teachers/edit/{id}(id=${teacher.id})}"
-               class="edit-btn">
-                Chỉnh sửa
-            </a>
-
-            <a th:href="@{/teachers/delete/{id}(id=${teacher.id})}"
-               class="delete-btn">
-                Xóa
-            </a>
-
-        </td>
-
-    </tr>
-
-    </tbody>
-
-</table>
+        <table>
+            <thead>
+                <tr>
+                    <th>Mã GV</th>
+                    <th>Họ và Tên</th>
+                    <th>Email</th>
+                    <th>Số điện thoại</th>
+                    <th>Bộ môn</th>
+                    <th>Học vị</th>
+                    <!--
+                        Cột "Thao tác" chỉ hiện với ADMIN.
+                        TEACHER không thể Sửa/Xóa nên ẩn cả cột đi cho gọn.
+                    -->
+                    <th th:if="${userRole == 'ADMIN'}">Thao tác</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="teacher : ${teachers}">
+                    <td th:text="${teacher.teacherId}"></td>
+                    <td th:text="${teacher.name}"></td>
+                    <td th:text="${teacher.email}"></td>
+                    <td th:text="${teacher.phone}"></td>
+                    <td th:text="${teacher.departmentName}"></td>
+                    <td th:text="${teacher.degree}"></td>
+                    <!-- Nút Sửa/Xóa: chỉ ADMIN thấy -->
+                    <td th:if="${userRole == 'ADMIN'}">
+                        <a th:href="@{/teachers/edit/{id}(id=${teacher.teacherId})}" class="edit-btn">Sửa</a>
+                        <a th:href="@{/teachers/delete/{id}(id=${teacher.teacherId})}"
+                           class="delete-btn"
+                           onclick="return confirm('Bạn có chắc muốn xóa giảng viên này?')">Xóa</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 
 </body>
 </html>

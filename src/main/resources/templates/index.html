@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Trang chủ - Quản Lý Giáo Viên TLU</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+    <!--
+        NAVBAR — Thanh điều hướng trên cùng
+        Hiển thị:  Logo | Xin chào [tên]  [ROLE]  [Đăng xuất]
+        loggedUser và userRole được truyền từ AuthInterceptor
+    -->
+    <nav class="navbar">
+        <div class="nav-brand">Quản lý Giáo viên — ĐH Thăng Long</div>
+        <div class="nav-right">
+            <!-- Hiển thị tên đăng nhập của người dùng hiện tại -->
+            <span>Xin chào, <strong th:text="${loggedUser.username}">admin</strong></span>
+
+            <!--
+                Hiển thị badge quyền:
+                - Nếu là ADMIN → badge màu xanh lá
+                - Nếu là TEACHER → badge màu vàng cam
+            -->
+            <span class="role-badge"
+                  th:classappend="${userRole == 'ADMIN'} ? 'admin' : ''"
+                  th:text="${userRole}">ROLE</span>
+
+            <!-- Nút đăng xuất → gọi GET /logout để xóa session -->
+            <a href="/logout" class="logout-btn">Đăng xuất</a>
+        </div>
+    </nav>
+
+    <!-- Nội dung trang chủ -->
+    <div class="content">
+        <h1>Hệ Thống Quản Lý Giáo Viên</h1>
+        <h2>Chọn chức năng bạn muốn quản lý</h2>
+
+        <div class="menu">
+            <a href="/teachers">Quản lý Giảng viên</a>
+            <a href="/departments">Quản lý Bộ môn</a>
+            <a href="/facultys">Quản lý Khoa</a>
+            <a href="/subjects">Quản lý Môn học</a>
+            <a href="/classrooms">Quản lý Phòng học</a>
+            <a href="/semesters">Quản lý Học kỳ</a>
+            <a href="/studentclasss">Quản lý Lớp sinh viên</a>
+            <a href="/teachingassignments">Phân công Giảng dạy</a>
+            <a href="/teachinglogs">Nhật ký Giảng dạy</a>
+            <a href="/contracts">Quản lý Hợp đồng</a>
+            <a href="/salarys">Quản lý Lương</a>
+            <!-- Chỉ ADMIN mới thấy mục Quản lý Tài khoản và Vai trò -->
+            <a href="/users" th:if="${userRole == 'ADMIN'}">Quản lý Tài khoản</a>
+            <a href="/roles" th:if="${userRole == 'ADMIN'}">Quản lý Vai trò</a>
+        </div>
+    </div>
+
+</body>
+</html>

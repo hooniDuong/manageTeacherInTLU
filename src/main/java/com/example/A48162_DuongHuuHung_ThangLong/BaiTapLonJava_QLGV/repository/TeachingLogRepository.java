@@ -8,4 +8,7 @@ import java.util.List;
 public interface TeachingLogRepository extends JpaRepository<TeachingLog, String> {
     // Lấy danh sách các buổi dạy của một lượt Phân công giảng dạy
     List<TeachingLog> findByAssignment_AssignmentId(String assignmentId);
+
+    // Tìm kiếm nhật ký giảng dạy theo chủ đề/nội dung bài giảng, tên giảng viên, hoặc mã nhật ký
+    List<TeachingLog> findByTopicContainingIgnoreCaseOrAssignment_Teacher_NameContainingIgnoreCaseOrLogIdContainingIgnoreCase(String topic, String teacherName, String logId);
 }

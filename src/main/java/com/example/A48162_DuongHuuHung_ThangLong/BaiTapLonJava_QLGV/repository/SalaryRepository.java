@@ -7,8 +7,11 @@ import java.util.List;
 
 public interface SalaryRepository extends JpaRepository<Salary, String> {
     //Tìm bảng lương cụ thể của một giáo viên trong 1 tháng/năm cụ thể
-    Salary findByTeacher_TeacherIdAndMonthAndYear(String teacherId, String month, Integer year);
+    Salary findByTeacher_TeacherIdAndMonthAndYear(String teacherId, Integer month, Integer year);
 
     //Lấy toàn bộ danh sách lương của cả trường trong 1 tháng, 1 năm => báo cáo
-    List<Salary> findByMonthAndYear(String month, Integer year);
+    List<Salary> findByMonthAndYear(Integer month, Integer year);
+
+    // Tìm kiếm bảng lương theo tên giáo viên hoặc mã bảng lương (không phân biệt hoa thường)
+    List<Salary> findByTeacher_NameContainingIgnoreCaseOrSalaryIdContainingIgnoreCase(String teacherName, String salaryId);
 }

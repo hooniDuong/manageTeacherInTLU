@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Thêm mới Hợp đồng</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <h1>Thêm mới Hợp đồng</h1>
+    <form th:action="@{/contracts/save}" th:object="${obj}" method="post">
+        <div class="form-group">
+            <label>Mã hợp đồng (ID):</label>
+            <input type="text" th:field="*{contractId}" required />
+        </div>
+        <div class="form-group">
+            <label>Mã giảng viên ký kết:</label>
+            <input type="text" th:field="*{teacherId}" required />
+        </div>
+        <div class="form-group">
+            <label>Loại hợp đồng:</label>
+            <select th:field="*{contractType}">
+                <option value="Cơ hữu dài hạn">Cơ hữu dài hạn</option>
+                <option value="Cơ hữu 3 năm">Cơ hữu 3 năm</option>
+                <option value="Thử việc 2 tháng">Thử việc 2 tháng</option>
+                <option value="Thỉnh giảng theo kỳ">Thỉnh giảng theo kỳ</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Mức lương cơ bản:</label>
+            <input type="number" th:field="*{baseSalary}" required />
+        </div>
+        <div class="form-group">
+            <label>Ngày bắt đầu:</label>
+            <input type="date" th:field="*{startDate}" required />
+        </div>
+        <div class="form-group">
+            <label>Ngày kết thúc:</label>
+            <input type="date" th:field="*{endDate}" required />
+        </div>
+        <div class="form-group">
+            <label>Trạng thái:</label>
+            <select th:field="*{status}">
+                <option value="Hiệu lực">Hiệu lực</option>
+                <option value="Đang áp dụng">Đang áp dụng</option>
+                <option value="Hết hiệu lực">Hết hiệu lực</option>
+            </select>
+        </div>
+        <button type="submit">Lưu lại</button>
+    </form>
+    <a href="/contracts" class="back-link">Quay lại danh sách</a>
+</body>
+</html>

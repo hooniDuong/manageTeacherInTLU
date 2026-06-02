@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Thêm mới Tài khoản</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <h1>Tạo tài khoản người dùng mới</h1>
+    <form th:action="@{/users/save}" th:object="${obj}" method="post">
+        <div class="form-group">
+            <label>Mã tài khoản (User ID):</label>
+            <input type="text" th:field="*{userId}" required />
+        </div>
+        <div class="form-group">
+            <label>Tên đăng nhập (Username):</label>
+            <input type="text" th:field="*{username}" required />
+        </div>
+        <div class="form-group">
+            <label>Mật khẩu đăng nhập:</label>
+            <input type="password" th:field="*{password}" required />
+        </div>
+        <div class="form-group">
+            <label>Địa chỉ Email liên hệ:</label>
+            <input type="email" th:field="*{email}" required />
+        </div>
+        <div class="form-group">
+            <label>Mã nhóm quyền (Role ID):</label>
+            <input type="text" th:field="*{roleId}" placeholder="Ví dụ: ADMIN, TEACHER, ACADEMIC" required />
+        </div>
+        <div class="form-group" style="display: flex; align-items: center; gap: 10px;">
+            <input type="checkbox" th:field="*{status}" style="width: auto;" />
+            <label style="display: inline; margin: 0;">Cho phép hoạt động ngay</label>
+        </div>
+        <button type="submit">Tạo tài khoản</button>
+    </form>
+    <a href="/users" class="back-link">Quay lại danh sách</a>
+</body>
+</html>

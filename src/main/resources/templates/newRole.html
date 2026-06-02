@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Thêm mới Vai trò</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <h1>Thêm mới Vai trò (Role)</h1>
+    <form th:action="@{/roles/save}" th:object="${obj}" method="post">
+        <div class="form-group">
+            <label>Mã vai trò (Role ID):</label>
+            <input type="text" th:field="*{roleId}" required />
+        </div>
+        <div class="form-group">
+            <label>Tên vai trò:</label>
+            <input type="text" th:field="*{roleName}" required />
+        </div>
+        <button type="submit">Lưu lại</button>
+    </form>
+    <a href="/roles" class="back-link">Quay lại danh sách</a>
+</body>
+</html>

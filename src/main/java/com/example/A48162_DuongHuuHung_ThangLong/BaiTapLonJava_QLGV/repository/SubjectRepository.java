@@ -7,12 +7,14 @@ import java.util.List;
 
 public interface SubjectRepository extends JpaRepository<Subject, String> {
     //Lọc theo khoa
-    List<Subject> findByFaculty(String facultyId);
+    // List<Subject> findByFaculty(String facultyId);
 
     //Lọc theo bộ môn
-    List<Subject> findByDepartment(String departmentId);
+    List<Subject> findByDepartment_DepartmentId(String departmentId);
 
     //Lọc theo giáo viên (Giáo viên nào đang dạy môn này)
-    List<Subject> findByTeacher(String teacherId);
+    // List<Subject> findByTeacher(String teacherId);
 
+    //Tìm kiếm môn học theo tên/mô tả (không phân biệt hoa thường)
+    List<Subject> findByDescriptionContainingIgnoreCase(String description);
 }

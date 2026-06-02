@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Nhật ký Giảng dạy</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand">Quản lý Giáo viên — ĐH Thăng Long</div>
+        <div class="nav-right">
+            <span>Xin chào, <strong th:text="${loggedUser.username}">admin</strong></span>
+            <span class="role-badge" th:classappend="${userRole == 'ADMIN'} ? 'admin' : ''" th:text="${userRole}">ROLE</span>
+            <a href="/logout" class="logout-btn">Đăng xuất</a>
+        </div>
+    </nav>
+    <div class="content">
+        <h1>Nhật ký Giảng dạy</h1>
+        <a href="/teachinglogs/new" class="add-btn" th:if="${userRole == 'ADMIN'}">+ Ghi nhận buổi dạy mới</a>
+        <a href="/" class="back-btn">Trang chủ</a>
+        <div class="search-container">
+            <form th:action="@{/teachinglogs}" method="get">
+                <input type="text" name="search" th:value="${search}" placeholder="Chủ đề, tên GV hoặc mã nhật ký..." class="search-input">
+                <button type="submit" class="search-btn">Tìm kiếm</button>
+                <a th:if="${search != null and search != ''}" href="/teachinglogs" class="clear-btn">Hủy</a>
+            </form>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Mã nhật ký</th>
+                    <th>Mã phân công</th>
+                    <th>Ngày dạy</th>
+                    <th>Số giờ thực tế</th>
+                    <th>Nội dung bài học</th>
+                    <th>Trạng thái</th>
+                    <th th:if="${userRole == 'ADMIN'}">Thao tác</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="item : ${list}">
+                    <td th:text="${item.logId}"></td>
+                    <td th:text="${item.assignment != null ? item.assignment.assignmentId : 'Chưa liên kết'}"></td>
+                    <td th:text="${item.teachingDate}"></td>
+                    <td th:text="${item.hoursTaught}"></td>
+                    <td th:text="${item.topic}"></td>
+                    <td th:text="${item.status}"></td>
+                    <td th:if="${userRole == 'ADMIN'}">
+                        <a th:href="@{/teachinglogs/delete/{id}(id=${item.logId})}"
+                           class="delete-btn"
+                           onclick="return confirm('Bạn có chắc muốn xóa nhật ký này?')">Xóa</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

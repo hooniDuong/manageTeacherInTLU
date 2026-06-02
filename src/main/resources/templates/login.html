@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Đăng nhập</title>
+</head>
+<body>
+
+    <h2>Hệ thống Quản lý Giáo viên - ĐH Thăng Long</h2>
+    <hr>
+
+    <!-- Hiển thị thông báo lỗi nếu đăng nhập sai -->
+    <p th:if="${error != null}" style="color: red;">
+        <b th:text="${error}"></b>
+    </p>
+
+    <!-- Form đăng nhập -->
+    <form th:action="@{/login}" method="post">
+        <table>
+            <tr>
+                <td>Tên đăng nhập:</td>
+                <td><input type="text" name="username" size="25" autofocus required></td>
+            </tr>
+            <tr>
+                <td>Mật khẩu:</td>
+                <td><input type="password" name="password" size="25" required></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><input type="submit" value="Đăng nhập"></td>
+            </tr>
+        </table>
+    </form>
+
+    <hr>
+    <small>© 2025 Đại học Thăng Long — Mã SV: A48162 — Dương Hữu Hùng</small>
+
+</body>
+</html>

@@ -8,6 +8,9 @@ import java.util.List;
 
 public interface DepartmentRepository extends JpaRepository<Department, String> {
     //Cần lọc theo khoa
-    List<Department> findByFaculty(String facultyId);
+    List<Department> findByFaculty_FacultyId(String facultyId);
     //Trả về một list danh sách deparment lọc theo khoa(Faculty)
+
+    //Tìm kiếm bộ môn theo tên (không phân biệt hoa thường)
+    List<Department> findByNameContainingIgnoreCase(String name);
 }

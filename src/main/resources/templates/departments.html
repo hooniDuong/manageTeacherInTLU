@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Danh sách Bộ Môn</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand">Quản lý Giáo viên — ĐH Thăng Long</div>
+        <div class="nav-right">
+            <span>Xin chào, <strong th:text="${loggedUser.username}">admin</strong></span>
+            <span class="role-badge" th:classappend="${userRole == 'ADMIN'} ? 'admin' : ''" th:text="${userRole}">ROLE</span>
+            <a href="/logout" class="logout-btn">Đăng xuất</a>
+        </div>
+    </nav>
+    <div class="content">
+        <h1>Quản lý Bộ Môn</h1>
+        <a href="/departments/new" class="add-btn" th:if="${userRole == 'ADMIN'}">Thêm mới</a>
+        <a href="/" class="back-btn">Trang chủ</a>
+        <div class="search-container">
+            <form th:action="@{/departments}" method="get">
+                <input type="text" name="search" th:value="${search}" placeholder="Tìm kiếm theo tên bộ môn..." class="search-input">
+                <button type="submit" class="search-btn">Tìm kiếm</button>
+                <a th:if="${search != null and search != ''}" href="/departments" class="clear-btn">Hủy</a>
+            </form>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Mã bộ môn</th>
+                    <th>Tên bộ môn</th>
+                    <th>Mô tả</th>
+                    <th>Vị trí văn phòng</th>
+                    <th>Thuộc Khoa</th>
+                    <th th:if="${userRole == 'ADMIN'}">Thao tác</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="item : ${list}">
+                    <td th:text="${item.departmentId}"></td>
+                    <td th:text="${item.name}"></td>
+                    <td th:text="${item.description}"></td>
+                    <td th:text="${item.locationOffice}"></td>
+                    <td th:text="${item.facultyName}"></td>
+                    <td th:if="${userRole == 'ADMIN'}">
+                        <a th:href="@{/departments/delete/{id}(id=${item.departmentId})}"
+                           class="delete-btn"
+                           onclick="return confirm('Bạn có chắc muốn xóa bộ môn này?')">Xóa</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

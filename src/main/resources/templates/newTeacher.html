@@ -1,38 +1,84 @@
-<!--Form thêm mới giáo viên-->
-
-
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Add Teacher</title>
+    <title>Thêm mới Giảng viên</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
-
-<h2>Add Teacher</h2>
-
-<form th:action="@{/teachers/save}" th:object="${teacher}" method="post">
-
-    <input type="text" th:field="*{teacherCode}" placeholder="Teacher Code">
-    <br><br>
-
-    <input type="text" th:field="*{teacherName}" placeholder="Teacher Name">
-    <br><br>
-
-    <input type="text" th:field="*{teacherEmail}" placeholder="Email">
-    <br><br>
-
-    <input type="text" th:field="*{teacherPhone}" placeholder="Phone">
-    <br><br>
-
-    <input type="text" th:field="*{teacherSubject}" placeholder="Subject">
-    <br><br>
-
-    <input type="number" th:field="*{teacherSalary}" placeholder="Salary">
-    <br><br>
-
-    <button type="submit">Save</button>
-
-</form>
-
+    <h1>Thêm giảng viên mới</h1>
+    <form th:action="@{/teachers/save}" th:object="${teacher}" method="post">
+        <div class="form-group">
+            <label>Mã giảng viên (ID):</label>
+            <input type="text" th:field="*{teacherId}" required />
+        </div>
+        <div class="form-group">
+            <label>Họ và tên giảng viên:</label>
+            <input type="text" th:field="*{name}" required />
+        </div>
+        <div class="form-group">
+            <label>Giới tính:</label>
+            <select th:field="*{gender}">
+                <option value="Nam">Nam</option>
+                <option value="Nữ">Nữ</option>
+                <option value="Khác">Khác</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Ngày sinh:</label>
+            <input type="date" th:field="*{birthday}" required />
+        </div>
+        <div class="form-group">
+            <label>Địa chỉ Email:</label>
+            <input type="email" th:field="*{email}" />
+        </div>
+        <div class="form-group">
+            <label>Số điện thoại:</label>
+            <input type="text" th:field="*{phone}" />
+        </div>
+        <div class="form-group">
+            <label>Địa chỉ:</label>
+            <input type="text" th:field="*{address}" />
+        </div>
+        <div class="form-group">
+            <label>Học vị / Học hàm:</label>
+            <select th:field="*{degree}">
+                <option value="Thạc sĩ">Thạc sĩ</option>
+                <option value="Tiến sĩ">Tiến sĩ</option>
+                <option value="Phó Giáo sư">Phó Giáo sư</option>
+                <option value="Giáo sư">Giáo sư</option>
+                <option value="Cử nhân">Cử nhân (Trợ giảng)</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Chức vụ:</label>
+            <input type="text" th:field="*{position}" />
+        </div>
+        <div class="form-group">
+            <label>Ngày tuyển dụng:</label>
+            <input type="date" th:field="*{hireDate}" required />
+        </div>
+        <div class="form-group">
+            <label>Lương đề xuất:</label>
+            <input type="number" th:field="*{salary}" />
+        </div>
+        <div class="form-group">
+            <label>Trạng thái nhân sự:</label>
+            <select th:field="*{status}">
+                <option value="Đang làm việc">Đang làm việc</option>
+                <option value="Nghỉ phép">Nghỉ phép</option>
+                <option value="Đã nghỉ việc">Đã nghỉ việc</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Mã Bộ môn quản lý (Department ID):</label>
+            <input type="text" th:field="*{departmentId}" required />
+        </div>
+        <div class="form-group">
+            <label>Mã tài khoản (User ID - nếu có):</label>
+            <input type="text" th:field="*{userId}" />
+        </div>
+        <button type="submit">Lưu giảng viên</button>
+    </form>
+    <a href="/teachers" class="back-link">Quay lại danh sách</a>
 </body>
 </html>

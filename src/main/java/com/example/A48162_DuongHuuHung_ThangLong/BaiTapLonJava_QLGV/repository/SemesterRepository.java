@@ -8,4 +8,7 @@ import java.util.List;
 public interface SemesterRepository extends JpaRepository<Semester, String> {
     //Xem các học kì trong cùng một năm học (Integer year)
     List<Semester> findByYear(Integer year);
+
+    // Tìm kiếm học kỳ theo tên học kỳ (không phân biệt chữ hoa, chữ thường)
+    List<Semester> findByNameContainingIgnoreCase(String name);
 }

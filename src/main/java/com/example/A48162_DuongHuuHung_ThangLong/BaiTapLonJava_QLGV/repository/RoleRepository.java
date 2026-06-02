@@ -8,4 +8,7 @@ import java.util.List;
 public interface RoleRepository extends JpaRepository<Role, String> {
     //Tìm role theo tên (Role: quản trị, giáo viên,...)
     Role findByRoleName (String roleName);
+
+    // Tìm kiếm quyền theo tên quyền (không phân biệt chữ hoa, chữ thường)
+    List<Role> findByRoleNameContainingIgnoreCase(String roleName);
 }

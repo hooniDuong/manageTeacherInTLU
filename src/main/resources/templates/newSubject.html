@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Thêm mới Môn học</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <h1>Thêm mới Môn học</h1>
+    <form th:action="@{/subjects/save}" th:object="${obj}" method="post">
+        <div class="form-group">
+            <label>Mã môn học (ID):</label>
+            <input type="text" th:field="*{subjectId}" required />
+        </div>
+        <div class="form-group">
+            <label>Tên môn học / Mô tả:</label>
+            <input type="text" th:field="*{description}" required />
+        </div>
+        <div class="form-group">
+            <label>Số tín chỉ:</label>
+            <input type="number" th:field="*{credits}" required />
+        </div>
+        <div class="form-group">
+            <label>Mã bộ môn quản lý (Department ID):</label>
+            <input type="text" th:field="*{departmentId}" required />
+        </div>
+        <button type="submit">Lưu lại</button>
+    </form>
+    <a href="/subjects" class="back-link">Quay lại danh sách</a>
+</body>
+</html>

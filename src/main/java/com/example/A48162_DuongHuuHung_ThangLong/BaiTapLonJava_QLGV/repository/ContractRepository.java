@@ -7,5 +7,8 @@ import java.util.List;
 
 public interface ContractRepository extends JpaRepository<Contract, String> {
     //Tìm hợp đồng lao động của giáo viên nào đó cụ thể
-    List<Contract> findByTeacher(String teacherId);
+    List<Contract> findByTeacher_TeacherId(String teacherId);
+
+    // Tìm kiếm hợp đồng theo Loại hợp đồng, Mã hợp đồng, hoặc Tên giảng viên (không phân biệt hoa thường)
+    List<Contract> findByContractTypeContainingIgnoreCaseOrContractIdContainingIgnoreCaseOrTeacher_NameContainingIgnoreCase(String contractType, String contractId, String teacherName);
 }

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Chốt lương tháng</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <h1>Chốt lương tháng giảng viên</h1>
+    <form th:action="@{/salarys/save}" th:object="${obj}" method="post">
+        <div class="form-group">
+            <label>Mã bản ghi lương (ID):</label>
+            <input type="text" th:field="*{salaryId}" required />
+        </div>
+        <div class="form-group">
+            <label>Mã giảng viên:</label>
+            <input type="text" th:field="*{teacherId}" required />
+        </div>
+        <div class="form-group">
+            <label>Tháng (1-12):</label>
+            <input type="number" th:field="*{month}" min="1" max="12" required />
+        </div>
+        <div class="form-group">
+            <label>Năm:</label>
+            <input type="number" th:field="*{year}" required />
+        </div>
+        <div class="form-group">
+            <label>Tổng số giờ dạy thực tế:</label>
+            <input type="number" step="0.1" th:field="*{totalHours}" required />
+        </div>
+        <div class="form-group">
+            <label>Tiền thưởng thêm:</label>
+            <input type="number" th:field="*{bonus}" />
+        </div>
+        <div class="form-group">
+            <label>Tiền khấu trừ:</label>
+            <input type="number" th:field="*{deduction}" />
+        </div>
+        <div class="form-group">
+            <label>Tổng thực nhận:</label>
+            <input type="number" th:field="*{totalSalary}" required />
+        </div>
+        <button type="submit">Chốt lương</button>
+    </form>
+    <a href="/salarys" class="back-link">Quay lại danh sách</a>
+</body>
+</html>

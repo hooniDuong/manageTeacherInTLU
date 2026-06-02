@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Thêm mới Phòng học</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <h1>Thêm mới Phòng học</h1>
+    <form th:action="@{/classrooms/save}" th:object="${obj}" method="post">
+        <div class="form-group">
+            <label>Mã phòng học (ID):</label>
+            <input type="text" th:field="*{classroomId}" required />
+        </div>
+        <div class="form-group">
+            <label>Tên phòng học:</label>
+            <input type="text" th:field="*{name}" required />
+        </div>
+        <div class="form-group">
+            <label>Tòa nhà / Vị trí:</label>
+            <input type="text" th:field="*{location}" required />
+        </div>
+        <div class="form-group">
+            <label>Sức chứa (Sinh viên):</label>
+            <input type="number" th:field="*{capacity}" required />
+        </div>
+        <button type="submit">Lưu lại</button>
+    </form>
+    <a href="/classrooms" class="back-link">Quay lại danh sách</a>
+</body>
+</html>

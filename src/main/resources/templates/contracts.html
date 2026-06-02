@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Danh sách Hợp đồng</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand">Quản lý Giáo viên — ĐH Thăng Long</div>
+        <div class="nav-right">
+            <span>Xin chào, <strong th:text="${loggedUser.username}">admin</strong></span>
+            <span class="role-badge" th:classappend="${userRole == 'ADMIN'} ? 'admin' : ''" th:text="${userRole}">ROLE</span>
+            <a href="/logout" class="logout-btn">Đăng xuất</a>
+        </div>
+    </nav>
+    <div class="content">
+        <h1>Quản lý Hợp đồng</h1>
+        <a href="/contracts/new" class="add-btn" th:if="${userRole == 'ADMIN'}">Thêm mới</a>
+        <a href="/" class="back-btn">Trang chủ</a>
+        <div class="search-container">
+            <form th:action="@{/contracts}" method="get">
+                <input type="text" name="search" th:value="${search}" placeholder="Loại HĐ, mã HĐ hoặc tên GV..." class="search-input">
+                <button type="submit" class="search-btn">Tìm kiếm</button>
+                <a th:if="${search != null and search != ''}" href="/contracts" class="clear-btn">Hủy</a>
+            </form>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Mã hợp đồng</th>
+                    <th>Giảng viên ký kết</th>
+                    <th>Loại hợp đồng</th>
+                    <th>Ngày bắt đầu</th>
+                    <th>Ngày kết thúc</th>
+                    <th>Mức lương cơ bản</th>
+                    <th>Trạng thái</th>
+                    <th th:if="${userRole == 'ADMIN'}">Thao tác</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="item : ${list}">
+                    <td th:text="${item.contractId}"></td>
+                    <td th:text="${item.teacher != null ? item.teacher.name : 'Chưa gán'}"></td>
+                    <td th:text="${item.contractType}"></td>
+                    <td th:text="${item.startDate}"></td>
+                    <td th:text="${item.endDate}"></td>
+                    <td th:text="${#numbers.formatDecimal(item.baseSalary, 0, 'COMMA', 0, 'POINT')} + ' đ'"></td>
+                    <td th:text="${item.status}"></td>
+                    <td th:if="${userRole == 'ADMIN'}">
+                        <a th:href="@{/contracts/delete/{id}(id=${item.contractId})}"
+                           class="delete-btn"
+                           onclick="return confirm('Bạn có chắc muốn xóa hợp đồng này?')">Xóa</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Ghi nhận Nhật ký giảng dạy</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <h1>Ghi nhận nhật ký buổi dạy</h1>
+    <form th:action="@{/teachinglogs/save}" th:object="${obj}" method="post">
+        <div class="form-group">
+            <label>Mã nhật ký (ID):</label>
+            <input type="text" th:field="*{logId}" required />
+        </div>
+        <div class="form-group">
+            <label>Mã lịch phân công (Assignment ID):</label>
+            <input type="text" th:field="*{assignmentId}" required />
+        </div>
+        <div class="form-group">
+            <label>Ngày lên lớp:</label>
+            <input type="date" th:field="*{teachingDate}" required />
+        </div>
+        <div class="form-group">
+            <label>Số giờ dạy thực tế:</label>
+            <input type="number" th:field="*{actualHours}" required />
+        </div>
+        <div class="form-group">
+            <label>Nội dung chủ đề giảng dạy:</label>
+            <input type="text" th:field="*{content}" required />
+        </div>
+        <div class="form-group">
+            <label>Trạng thái buổi dạy (Báo cáo):</label>
+            <select th:field="*{note}">
+                <option value="Đã dạy">Đã dạy</option>
+                <option value="Dạy bù">Dạy bù</option>
+                <option value="Báo nghỉ">Báo nghỉ</option>
+            </select>
+        </div>
+        <button type="submit">Lưu nhật ký</button>
+    </form>
+    <a href="/teachinglogs" class="back-link">Quay lại danh sách</a>
+</body>
+</html>
