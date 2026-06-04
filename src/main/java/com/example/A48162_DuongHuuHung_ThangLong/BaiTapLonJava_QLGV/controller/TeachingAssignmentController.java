@@ -12,24 +12,17 @@ import org.springframework.web.bind.annotation.*;
 public class TeachingAssignmentController {
     @Autowired private TeachingAssignmentService service;
 
-    // Endpoint GET "/teachingassignments" hiển thị danh sách phân công giảng dạy
     @GetMapping
     public String list(
-            // Lấy từ khóa tìm kiếm "search" từ form (tìm theo tên giảng viên, tên môn học hoặc mã phân công, không bắt buộc)
             @RequestParam(value = "search", required = false) String search, 
             Model model
     ) {
-        // Kiểm tra xem người dùng có thực hiện tìm kiếm hay không
         if (search != null && !search.trim().isEmpty()) {
-            // Nếu có: Gọi service tìm kiếm các bản ghi phân công giảng dạy theo từ khóa
             model.addAttribute("list", service.searchAssignments(search.trim()));
-            // Gửi từ khóa tìm kiếm ngược lại giao diện để hiển thị trên ô nhập liệu
             model.addAttribute("search", search.trim());
         } else {
-            // Nếu không: Tải danh sách tất cả phân công giảng dạy có trong DB
             model.addAttribute("list", service.getAllAssignments());
         }
-        // Trả về file HTML "teachingassignments.html"
         return "teachingassignments";
     }
 

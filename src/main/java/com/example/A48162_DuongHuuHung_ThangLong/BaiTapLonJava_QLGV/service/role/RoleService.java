@@ -5,9 +5,6 @@ import com.example.A48162_DuongHuuHung_ThangLong.BaiTapLonJava_QLGV.dto.RoleResp
 
 import java.util.List;
 
-/**
- * Service xử lý các nghiệp vụ liên quan đến QUYỀN TRUY CẬP (Role)
- */
 public interface RoleService {
     // Lấy danh sách tất cả các Quyền (Admin, Teacher, Manager...)
     List<RoleResponseDTO> getAllRoles();

@@ -12,24 +12,17 @@ import org.springframework.web.bind.annotation.*;
 public class UserController {
     @Autowired private UserService service;
 
-    // Endpoint GET "/users" hiển thị danh sách tài khoản người dùng
     @GetMapping
     public String list(
-            // Lấy từ khóa tìm kiếm "search" từ form giao diện gửi lên (tìm theo tên tài khoản hoặc email, không bắt buộc)
             @RequestParam(value = "search", required = false) String search, 
             Model model
     ) {
-        // Kiểm tra xem người dùng có nhập từ khóa tìm kiếm tài khoản hay không
         if (search != null && !search.trim().isEmpty()) {
-            // Nếu có: Gọi service thực hiện tìm kiếm tài khoản theo username hoặc email chứa từ khóa
             model.addAttribute("list", service.searchUsers(search.trim()));
-            // Gửi từ khóa tìm kiếm ngược lại giao diện để lưu vết hiển thị
             model.addAttribute("search", search.trim());
         } else {
-            // Nếu không: Lấy toàn bộ danh sách tài khoản người dùng từ hệ thống
             model.addAttribute("list", service.getAllUsers());
         }
-        // Trả về file HTML "users.html"
         return "users";
     }
 

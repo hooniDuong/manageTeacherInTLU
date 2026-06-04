@@ -14,24 +14,17 @@ public class TeacherController {
     @Autowired
     private TeacherService teacherService;
 
-    // Endpoint GET "/teachers" hiển thị danh sách giáo viên
     @GetMapping
     public String listTeachers(
-            // Lấy từ khóa "search" người dùng nhập từ ô tìm kiếm (không bắt buộc)
             @RequestParam(value = "search", required = false) String search, 
             Model model
     ) {
-        // Kiểm tra xem người dùng có thực hiện tìm kiếm hay không
         if (search != null && !search.trim().isEmpty()) {
-            // Nếu có: Gọi service tìm kiếm giảng viên theo tên chứa từ khóa
             model.addAttribute("teachers", teacherService.searchTeachersByName(search.trim()));
-            // Gửi từ khóa tìm kiếm ngược lại giao diện
             model.addAttribute("search", search.trim());
         } else {
-            // Nếu không: Lấy danh sách toàn bộ giảng viên
             model.addAttribute("teachers", teacherService.getAllTeachers());
         }
-        // Trả về file HTML "teachers.html"
         return "teachers";
     }
 

@@ -17,21 +17,15 @@ public class TeachingLogController {
     // Endpoint GET "/teachinglogs" hiển thị danh sách nhật ký giảng dạy
     @GetMapping
     public String list(
-            // Lấy từ khóa tìm kiếm "search" từ form giao diện gửi lên (tìm theo chủ đề, tên GV hoặc mã nhật ký, không bắt buộc)
             @RequestParam(value = "search", required = false) String search, 
             Model model
     ) {
-        // Kiểm tra xem người dùng có thực hiện tìm kiếm hay không
         if (search != null && !search.trim().isEmpty()) {
-            // Nếu có: Gọi service tìm kiếm nhật ký giảng dạy theo từ khóa chứa trong chủ đề, tên giảng viên hoặc mã nhật ký
             model.addAttribute("list", service.searchLogs(search.trim()));
-            // Gửi từ khóa tìm kiếm ngược lại giao diện để duy trì ô nhập liệu
             model.addAttribute("search", search.trim());
         } else {
-            // Nếu không: Tải toàn bộ danh sách nhật ký giảng dạy/chấm công có trong hệ thống
             model.addAttribute("list", service.getAllLogs());
         }
-        // Trả về file HTML "teachinglogs.html"
         return "teachinglogs";
     }
 

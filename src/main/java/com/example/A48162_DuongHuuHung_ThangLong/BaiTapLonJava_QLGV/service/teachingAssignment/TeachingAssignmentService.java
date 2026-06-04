@@ -3,9 +3,6 @@ import com.example.A48162_DuongHuuHung_ThangLong.BaiTapLonJava_QLGV.dto.teaching
 import com.example.A48162_DuongHuuHung_ThangLong.BaiTapLonJava_QLGV.dto.teachingAssignment.TeachingAssignmentResponseDTO;
 import java.util.List;
 
-/**
- * Service xử lý các nghiệp vụ liên quan đến PHÂN CÔNG GIẢNG DẠY (TeachingAssignment)
- */
 public interface TeachingAssignmentService {
     // Lấy toàn bộ danh sách phân công
     List<TeachingAssignmentResponseDTO> getAllAssignments();

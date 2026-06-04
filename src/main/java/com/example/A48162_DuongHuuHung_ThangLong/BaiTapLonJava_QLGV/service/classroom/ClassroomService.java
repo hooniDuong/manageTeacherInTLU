@@ -2,9 +2,7 @@ package com.example.A48162_DuongHuuHung_ThangLong.BaiTapLonJava_QLGV.service.cla
 import com.example.A48162_DuongHuuHung_ThangLong.BaiTapLonJava_QLGV.entity.Classroom;
 import java.util.List;
 
-/**
- * Service xử lý các nghiệp vụ liên quan đến PHÒNG HỌC VẬT LÝ (Classroom)
- */
+
 public interface ClassroomService {
     // Lấy danh sách tất cả phòng học (Phòng 301, 302...)
     List<Classroom> getAllClassrooms();

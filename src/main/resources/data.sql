@@ -4,9 +4,7 @@ SET FOREIGN_KEY_CHECKS = 0;
 -- 1. ROLE (Vai trò)
 INSERT IGNORE INTO `role` (`role_id`, `role_name`) VALUES
 ('ADMIN', 'Quản trị viên'),
-('TEACHER', 'Giảng viên'),
-('ACADEMIC', 'Nhân viên đào tạo');
-
+('TEACHER', 'Giảng viên');
 -- 2. USERS (Tài khoản người dùng)
 INSERT IGNORE INTO `users` (`user_id`, `username`, `password`, `email`, `status`, `create_date`, `role_id`) VALUES
 ('USR001', 'admin', '123456', 'admin@thanglong.edu.vn', 1, '2026-01-01', 'ADMIN'),

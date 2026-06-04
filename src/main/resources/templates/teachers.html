@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
     <meta charset="UTF-8">
     <title>Danh sách Giảng viên</title>
-    <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
 
@@ -40,24 +40,23 @@
             <thead>
                 <tr>
                     <th>Mã GV</th>
+<!--                    <th class="col-magv">Mã GV</th>-->
                     <th>Họ và Tên</th>
                     <th>Email</th>
-                    <th>Số điện thoại</th>
+<!--                    <th>Số điện thoại</th>-->
                     <th>Bộ môn</th>
                     <th>Học vị</th>
-                    <!--
-                        Cột "Thao tác" chỉ hiện với ADMIN.
-                        TEACHER không thể Sửa/Xóa nên ẩn cả cột đi cho gọn.
-                    -->
+
                     <th th:if="${userRole == 'ADMIN'}">Thao tác</th>
                 </tr>
             </thead>
             <tbody>
                 <tr th:each="teacher : ${teachers}">
-                    <td th:text="${teacher.teacherId}"></td>
+                    <td class="col-magv" th:text="${teacher.teacherId}"></td>
+<!--                    <td th:text="${teacher.teacherId}"></td>-->
                     <td th:text="${teacher.name}"></td>
                     <td th:text="${teacher.email}"></td>
-                    <td th:text="${teacher.phone}"></td>
+<!--                    <td th:text="${teacher.phone}"></td>-->
                     <td th:text="${teacher.departmentName}"></td>
                     <td th:text="${teacher.degree}"></td>
                     <!-- Nút Sửa/Xóa: chỉ ADMIN thấy -->

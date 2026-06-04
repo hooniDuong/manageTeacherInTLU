@@ -1,5 +1,4 @@
 package com.example.A48162_DuongHuuHung_ThangLong.BaiTapLonJava_QLGV.service.salary;
-
 import com.example.A48162_DuongHuuHung_ThangLong.BaiTapLonJava_QLGV.dto.salary.SalaryRequestDTO;
 import com.example.A48162_DuongHuuHung_ThangLong.BaiTapLonJava_QLGV.dto.salary.SalaryResponseDTO;
 import com.example.A48162_DuongHuuHung_ThangLong.BaiTapLonJava_QLGV.entity.Salary;
@@ -48,15 +47,25 @@ public class SalaryServiceImpl implements SalaryService {
         s.setMonth(req.getMonth());
         s.setYear(req.getYear());
         s.setTotalHours(req.getTotalHours());
-        s.setBonus(req.getBonus());
-        s.setDeduction(req.getDeduction());
-        s.setTotalSalary(req.getTotalSalary());
+        
+        java.math.BigDecimal bonus = req.getBonus() != null ? req.getBonus() : java.math.BigDecimal.ZERO;
+        java.math.BigDecimal deduction = req.getDeduction() != null ? req.getDeduction() : java.math.BigDecimal.ZERO;
+        s.setBonus(bonus);
+        s.setDeduction(deduction);
         s.setCreateDate(LocalDate.now());
 
         if (req.getTeacherId() != null) {
             Teacher t = teacherRepo.findById(req.getTeacherId()).orElseThrow(() -> new RuntimeException("Không tìm thấy giáo viên"));
             s.setTeacher(t);
+            
+            // Công thức: Tổng thực nhận = Lương cơ bản của giảng viên + Thưởng - Khấu trừ
+            java.math.BigDecimal baseSalary = t.getSalary() != null ? t.getSalary() : java.math.BigDecimal.ZERO;
+            java.math.BigDecimal totalSalary = baseSalary.add(bonus).subtract(deduction);
+            s.setTotalSalary(totalSalary);
+        } else {
+            s.setTotalSalary(java.math.BigDecimal.ZERO);
         }
+        
         return mapToDTO(salaryRepo.save(s));
     }
 

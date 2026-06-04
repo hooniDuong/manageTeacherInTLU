@@ -3,9 +3,6 @@ import com.example.A48162_DuongHuuHung_ThangLong.BaiTapLonJava_QLGV.dto.studentc
 import com.example.A48162_DuongHuuHung_ThangLong.BaiTapLonJava_QLGV.dto.studentclass.StudentClassResponseDTO;
 import java.util.List;
 
-/**
- * Service xử lý các nghiệp vụ liên quan đến LỚP SINH VIÊN (StudentClass)
- */
 public interface StudentClassService {
     // Lấy danh sách toàn bộ Lớp sinh viên
     List<StudentClassResponseDTO> getAllClasses();

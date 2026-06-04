@@ -1,39 +1,49 @@
-/* CSS Theme: Raw HTML Beginner Student Look */
 
 * {
     box-sizing: border-box;
 }
 
+
 body {
-    font-family: "Times New Roman", Times, serif; /* Raw HTML default font */
-    font-size: 16px; /* standard default size */
+    /*thay đổi font chữ*/
+    /*font-family: Arial, Helvetica, sans-serif;*/
+    font-family: "Times New Roman", sans-serif;
+
+    /*font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;*/
+    font-size: 15px;
     background-color: #ffffff;
-    color: #000000;
+    color: #333333;
     padding: 20px;
-    line-height: 1.3;
+    line-height: 1.4;
 }
 
-/* Page titles */
+
 h1 {
-    font-size: 2em;
-    margin-bottom: 0.67em;
-    font-weight: bold;
+    font-size: 1.8em;
+    margin-bottom: 10px;
+    color: #111111;
 }
+
 
 h2 {
-    font-size: 1.5em;
-    margin-bottom: 0.75em;
-    font-weight: bold;
+    font-size: 1.2em;
+    margin-bottom: 20px;
+    color: #555555;
+    font-weight: normal;
 }
 
-/* Header panel as a very simple top text segment */
+
+
+
+
 .navbar {
     display: block;
     width: 100%;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
     padding-bottom: 10px;
-    border-bottom: 1px solid #000000; /* simple line separator */
+    border-bottom: 2px solid #333333;
 }
+
 
 .navbar .nav-brand {
     font-size: 1.2em;
@@ -41,28 +51,42 @@ h2 {
     display: inline-block;
 }
 
+
 .navbar .nav-right {
     float: right;
-    font-size: 1em;
 }
+
 
 .navbar::after {
-    content: "";
-    display: table;
-    clear: both;
+    content: "";                   /* Tạo nội dung rỗng */
+    display: table;                /* Hiển thị dạng bảng */
+    clear: both;                   /* Xóa bỏ hiệu ứng float từ các phần tử con */
 }
 
+
+
 .role-badge {
-    font-weight: normal;
+    font-weight: bold;             /* In đậm vai trò */
+    color: #444444;                /* Màu chữ xám mặc định */
 }
+
+/* Thêm ký tự mở ngoặc vuông trước tên vai trò */
 .role-badge::before {
     content: " [";
 }
+
+/* Thêm ký tự đóng ngoặc vuông sau tên vai trò */
 .role-badge::after {
     content: "]";
 }
 
-/* Links: standard blue/underlined browser style */
+/* Định dạng riêng cho vai trò Quản trị viên (ADMIN) */
+.role-badge.admin {
+    color: #008000;                /* Chuyển chữ thành màu Xanh lá cây */
+}
+
+
+
 a, 
 .add-btn, 
 .back-btn, 
@@ -70,56 +94,63 @@ a,
 .edit-btn, 
 .clear-btn, 
 .back-link {
-    background: none !important;
-    border: none !important;
-    color: #0000ee !important;
-    text-decoration: underline !important;
-    padding: 0 !important;
-    margin: 0 !important;
-    display: inline !important;
-    font-size: 1em !important;
-    font-family: "Times New Roman", Times, serif !important;
-    cursor: pointer;
+    background: none !important;        /* Loại bỏ màu nền mặc định */
+    border: none !important;            /* Loại bỏ khung viền mặc định */
+    color: #0000ee !important;          /* Màu chữ: Xanh dương chuẩn liên kết trình duyệt */
+    text-decoration: underline !important; /* Luôn có gạch chân dưới chữ */
+    padding: 0 !important;              /* Loại bỏ khoảng đệm lề trong */
+    margin: 0 !important;               /* Loại bỏ khoảng cách lề ngoài */
+    display: inline !important;         /* Hiển thị nội dòng như chữ thường */
+    font-size: 1em !important;          /* Cỡ chữ bằng cỡ chữ của phần tử cha chứa nó */
+    font-family: Arial, Helvetica, sans-serif !important; /* Dùng chung font hệ thống */
+    cursor: pointer;                    /* Khi di chuột vào sẽ biến thành hình bàn tay chọn */
 }
 
+/* Định dạng màu sắc khi liên kết đã được người dùng nhấn vào trước đó */
 a:visited {
-    color: #551a8b !important;
+    color: #551a8b !important;          /* Màu tím chuẩn của trình duyệt */
 }
 
-/* Separator between action links */
+/* Thêm thanh dọc ngăn cách " | " giữa các nút hành động (ví dụ: Thêm mới | Trang chủ) */
 .add-btn::after, .back-btn::after {
     content: " | ";
-    color: #000000;
-    text-decoration: none !important;
-    display: inline-block;
-    margin: 0 5px;
+    color: #333333;                     /* Màu thanh ngăn cách: Xám đậm */
+    text-decoration: none !important;   /* Không gạch chân dưới thanh dọc */
+    display: inline-block;              /* Hiển thị dạng khối nội dòng */
+    margin: 0 5px;                      /* Tạo khoảng cách lề trái/phải 5px */
 }
 
-/* List action buttons space */
+/* Tạo khoảng trống bên phải nút "Sửa" để không bị dính sát vào nút "Xóa" */
 .edit-btn {
     margin-right: 10px !important;
 }
 
-/* Forms - simple layout */
+/* Định dạng riêng cho nút "Xóa" mang tính cảnh báo nguy hiểm */
+.delete-btn {
+    color: #cc0000 !important;          /* Màu chữ đỏ cảnh báo */
+}
+
+
+
+/* Định dạng chung cho thẻ form */
 form {
-    border: none !important;
-    background: none !important;
-    padding: 0 !important;
-    margin-top: 15px;
-    margin-bottom: 15px;
+    margin-top: 15px;              /* Tạo khoảng cách lề trên: 15px */
+    margin-bottom: 15px;           /* Tạo khoảng cách lề dưới: 15px */
 }
 
+/* Nhóm chứa nhãn tiêu đề và ô nhập liệu tương ứng */
 .form-group {
-    margin-bottom: 15px;
+    margin-bottom: 15px;           /* Tạo khoảng cách lề dưới giữa các dòng nhập liệu: 15px */
 }
 
+/* Định dạng nhãn (Label) mô tả ô nhập liệu */
 .form-group label {
-    display: block;
-    font-weight: bold;
-    margin-bottom: 5px;
+    display: block;                /* Bắt buộc nhãn hiển thị riêng trên một dòng */
+    font-weight: bold;             /* In đậm chữ nhãn */
+    margin-bottom: 5px;            /* Khoảng cách từ nhãn tới ô nhập bên dưới: 5px */
 }
 
-/* Inputs: standard plain inputs */
+/* Cấu hình chung cho toàn bộ các ô nhập dữ liệu, ô chọn và vùng văn bản */
 input[type="text"], 
 input[type="password"], 
 input[type="number"], 
@@ -127,77 +158,101 @@ input[type="email"],
 input[type="date"], 
 select, 
 textarea {
-    width: 300px;
-    padding: 2px;
-    font-family: "Times New Roman", Times, serif;
-    font-size: 1em;
-    border: 1px solid #7f9db9; /* Default Windows text field border */
+    width: 280px;                  /* Chiều rộng cố định của ô nhập: 280px */
+    padding: 5px;                  /* Khoảng cách đệm chữ bên trong ô: 5px */
+    font-family: Arial, Helvetica, sans-serif; /* Font chữ */
+    font-size: 0.95em;             /* Cỡ chữ bằng 95% cỡ chữ tiêu chuẩn */
+    border: 1px solid #999999;     /* Khung viền mỏng màu xám nhạt */
 }
 
-/* Standard grey browser buttons */
+
+
+/* Định dạng cho các nút bấm thật sự (như nút Tìm kiếm, nút Lưu form) */
 button, 
 input[type="submit"], 
 input[type="button"],
 .search-btn {
-    background-color: #f0f0f0 !important;
+    background-color: #0000ee !important;
     color: #000000 !important;
-    border: 1px solid #7a7a7a !important;
-    padding: 2px 6px !important;
-    font-family: "Times New Roman", Times, serif !important;
-    font-size: 1em !important;
-    cursor: pointer;
-    display: inline-block !important;
+    border: 1px solid #999999 !important; /* Viền nút màu xám */
+    padding: 4px 10px !important;         /* Khoảng đệm: trên/dưới 4px, trái/phải 10px */
+    font-family: Arial, Helvetica, sans-serif !important; /* Font chữ nút */
+    font-size: 0.9em !important;          /* Cỡ chữ nút */
+    cursor: pointer;                      /* Biến con trỏ chuột thành hình bàn tay */
+    display: inline-block !important;     /* Hiển thị dạng khối nội dòng */
 }
 
-/* Search input container */
+/* Hiệu ứng đổi màu nền đậm hơn một chút khi di chuột vào nút bấm */
+button:hover,
+input[type="submit"]:hover,
+.search-btn:hover {
+    background-color: #d1d1d1 !important; /* Đổi sang nền xám đậm hơn */
+}
+
+/* Khung chứa biểu mẫu tìm kiếm */
 .search-container {
-    margin: 15px 0;
+    margin: 15px 0;                /* Khoảng cách lề trên/dưới: 15px */
 }
+
+/* Định dạng riêng cho ô nhập văn bản tìm kiếm */
 .search-input {
-    width: 200px !important;
-    display: inline-block !important;
+    width: 200px !important;       /* Thu hẹp chiều rộng ô tìm kiếm còn 200px */
+    display: inline-block !important; /* Hiển thị nội dòng để nằm cạnh nút Tìm kiếm */
 }
 
-/* Tables: plain black table lines (border=1 look) */
+
+
+/* Cấu hình chung cho thẻ bảng biểu */
 table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 15px;
-    border: 1px solid #000000;
+    width: 100%;                   /* Chiều rộng bảng chiếm 100% không gian chứa */
+    border-collapse: collapse;     /* Gộp các đường viền của các ô lại làm một, tránh viền kép */
+    margin-top: 20px;              /* Khoảng cách từ bảng tới phần tử phía trên: 20px */
 }
 
+/* Định dạng chung cho ô tiêu đề (th) và ô dữ liệu (td) của bảng */
 th, td {
-    border: 1px solid #000000;
-    padding: 4px;
-    text-align: left;
+    border: 1px solid #cccccc;     /* Đường viền mỏng bao quanh mỗi ô màu xám nhạt */
+    padding: 8px;                  /* Khoảng cách đệm chữ bên trong mỗi ô: 8px */
+    text-align: left;              /* Căn lề văn bản bên trái ô */
 }
 
+/* Định dạng riêng cho hàng tiêu đề của bảng (th) */
 th {
-    background-color: #f0f0f0; /* Default header cell background */
-    font-weight: bold;
+    background-color: #008000;     /* Màu nền của tiêu đề bảng: Xám nhạt */
+    font-weight: bold;             /* In đậm chữ tiêu đề */
 }
 
+/* Hiệu ứng làm sáng dòng khi di chuột qua hàng dữ liệu (tr) */
 tr:hover {
-    background-color: transparent !important; /* No hover color highlight */
+    background-color: #f9f9f9 !important; /* Đổi màu nền hàng sang màu xám cực nhạt */
 }
 
-/* Horizontal rule */
+
+
+/* Đường kẻ ngang ngăn cách nội dung */
 hr {
-    border: 0;
-    border-top: 1px solid #000000;
-    margin: 20px 0;
+    border: 0;                     /* Loại bỏ viền mặc định của trình duyệt */
+    border-top: 1px solid #cccccc; /* Tạo đường kẻ trên mỏng 1px màu xám */
+    margin: 20px 0;                /* Tạo khoảng cách lề trên/dưới: 20px */
 }
 
-/* Main menu (index.html): Display as standard bullet points of links */
+/* Khung chứa các liên kết chọn chức năng ở trang chủ */
 .menu {
-    display: block;
-    margin-top: 15px;
-    padding-left: 20px;
+    margin-top: 15px;              /* Lề trên: 15px */
+    padding-left: 20px;            /* Thụt lề trái 20px để tạo khoảng cách cho dấu chấm đầu dòng */
 }
 
+/* Các liên kết chức năng ở trang chủ được định dạng như danh sách không thứ tự (ul li) */
 .menu a {
-    display: list-item !important;
-    list-style-type: disc !important;
-    margin-bottom: 5px;
-    font-size: 1.1em !important;
+    display: list-item !important;       /* Bắt buộc hiển thị dạng danh sách (list-item) */
+    list-style-type: disc !important;    /* Dấu đầu dòng là hình tròn đặc (bullet point) */
+    margin-bottom: 8px;                  /* Khoảng cách lề dưới giữa các dòng liên kết: 8px */
+    font-size: 1.05em !important;        /* Cỡ chữ to hơn chữ thường một chút (105%) */
+}
+
+
+.col-magv {
+    color: #0284c7 !important;
+    font-weight: bold;
+    background-color: #f0f9ff;
 }

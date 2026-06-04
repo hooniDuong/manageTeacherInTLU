@@ -2,9 +2,6 @@ package com.example.A48162_DuongHuuHung_ThangLong.BaiTapLonJava_QLGV.service.con
 import com.example.A48162_DuongHuuHung_ThangLong.BaiTapLonJava_QLGV.entity.Contract;
 import java.util.List;
 
-/**
- * Service xử lý các nghiệp vụ liên quan đến HỢP ĐỒNG LAO ĐỘNG (Contract)
- */
 public interface ContractService {
     // Lấy danh sách lịch sử Hợp đồng của một Giáo viên (Biết được họ từng ký hợp đồng gì)
     List<Contract> getContractsByTeacherId(String teacherId);

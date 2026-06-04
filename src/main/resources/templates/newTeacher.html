@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Thêm mới Giảng viên</title>
     <link rel="stylesheet" th:href="@{/css/style.css}">
+    <title>Thêm mới Giảng viên</title>
 </head>
 <body>
     <h1>Thêm giảng viên mới</h1>
@@ -74,7 +74,7 @@
             <input type="text" th:field="*{departmentId}" required />
         </div>
         <div class="form-group">
-            <label>Mã tài khoản (User ID - nếu có):</label>
+            <label>Mã tài khoản (User ID):</label>
             <input type="text" th:field="*{userId}" />
         </div>
         <button type="submit">Lưu giảng viên</button>

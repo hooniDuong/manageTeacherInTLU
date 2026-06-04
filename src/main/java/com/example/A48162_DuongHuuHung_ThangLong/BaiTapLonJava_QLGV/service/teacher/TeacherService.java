@@ -3,10 +3,6 @@ import com.example.A48162_DuongHuuHung_ThangLong.BaiTapLonJava_QLGV.dto.teacher.
 import com.example.A48162_DuongHuuHung_ThangLong.BaiTapLonJava_QLGV.dto.teacher.TeacherResponseDTO;
 import java.util.List;
 
-/**
- * Service xử lý các nghiệp vụ liên quan đến GIÁO VIÊN (Teacher)
- * Đây là Service cốt lõi của hệ thống.
- */
 public interface TeacherService {
     // Lấy danh sách toàn bộ Giáo viên
     List<TeacherResponseDTO> getAllTeachers();

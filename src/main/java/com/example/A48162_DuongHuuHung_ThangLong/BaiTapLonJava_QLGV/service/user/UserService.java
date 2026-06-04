@@ -3,9 +3,6 @@ import com.example.A48162_DuongHuuHung_ThangLong.BaiTapLonJava_QLGV.dto.user.Use
 import com.example.A48162_DuongHuuHung_ThangLong.BaiTapLonJava_QLGV.dto.user.UserResponseDTO;
 import java.util.List;
 
-/**
- * Service xử lý các nghiệp vụ liên quan đến TÀI KHOẢN (User)
- */
 public interface UserService {
     // Lấy danh sách tất cả tài khoản
     List<UserResponseDTO> getAllUsers();

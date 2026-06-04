@@ -16,17 +16,16 @@ import java.util.Optional;
  * LoginController — Xử lý Đăng nhập và Đăng xuất
  *
  * Luồng hoạt động:
- *   GET  /login  → Hiển thị trang đăng nhập
- *   POST /login  → Nhận username + password từ form
- *                  → Kiểm tra với database
- *                  → Nếu đúng: lưu User vào Session, chuyển về trang chủ
- *                  → Nếu sai: báo lỗi, ở lại trang login
- *   GET  /logout → Xóa Session, chuyển về trang login
+ *   GET  /login  -> Hiển thị trang đăng nhập
+ *   POST /login  -> Nhận username + password từ form
+ *                  -> Kiểm tra với database
+ *                  -> Nếu đúng: lưu User vào Session, chuyển về trang chủ
+ *                  -> Nếu sai: báo lỗi, ở lại trang login
+ *   GET  /logout -> Xóa Session, chuyển về trang login
  */
 @Controller
 public class LoginController {
 
-    // Inject UserRepository để truy vấn bảng users trong database
     @Autowired
     private UserRepository userRepository;
 
@@ -38,7 +37,7 @@ public class LoginController {
     @GetMapping("/login")
     public String showLoginPage(HttpSession session) {
         // Kiểm tra xem trong session đã có user chưa
-        // Nếu đã đăng nhập (session còn hạn) → không cần vào login nữa
+        // Nếu đã đăng nhập (session còn hạn) -> không cần vào login nữa
         if (session.getAttribute("loggedUser") != null) {
             return "redirect:/";
         }
@@ -56,6 +55,7 @@ public class LoginController {
      * @param session   HttpSession dùng để lưu thông tin đăng nhập
      * @param model     Dùng để truyền thông báo lỗi về giao diện
      */
+
     @PostMapping("/login")
     public String processLogin(
             @RequestParam("username") String username,

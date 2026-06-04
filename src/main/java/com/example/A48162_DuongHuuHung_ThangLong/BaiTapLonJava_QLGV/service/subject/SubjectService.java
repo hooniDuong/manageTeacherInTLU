@@ -3,9 +3,6 @@ import com.example.A48162_DuongHuuHung_ThangLong.BaiTapLonJava_QLGV.dto.subject.
 import com.example.A48162_DuongHuuHung_ThangLong.BaiTapLonJava_QLGV.dto.subject.SubjectResponseDTO;
 import java.util.List;
 
-/**
- * Service xử lý các nghiệp vụ liên quan đến MÔN HỌC (Subject)
- */
 public interface SubjectService {
     // Danh sách toàn bộ môn học
     List<SubjectResponseDTO> getAllSubjects();

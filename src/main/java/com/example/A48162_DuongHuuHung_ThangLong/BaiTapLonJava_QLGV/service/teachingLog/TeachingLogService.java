@@ -2,9 +2,6 @@ package com.example.A48162_DuongHuuHung_ThangLong.BaiTapLonJava_QLGV.service.tea
 import com.example.A48162_DuongHuuHung_ThangLong.BaiTapLonJava_QLGV.entity.TeachingLog;
 import java.util.List;
 
-/**
- * Service xử lý các nghiệp vụ liên quan đến NHẬT KÝ GIẢNG DẠY / CHẤM CÔNG (TeachingLog)
- */
 public interface TeachingLogService {
     // Lấy danh sách các buổi dạy của 1 Lịch phân công (Ví dụ: xem thầy A đã dạy được mấy buổi môn Java)
     List<TeachingLog> getLogsByAssignmentId(String assignmentId);

@@ -3,9 +3,6 @@ import com.example.A48162_DuongHuuHung_ThangLong.BaiTapLonJava_QLGV.dto.faculty.
 import com.example.A48162_DuongHuuHung_ThangLong.BaiTapLonJava_QLGV.dto.faculty.FacultyRequestDTO;
 import java.util.List;
 
-/**
- * Service xử lý các nghiệp vụ liên quan đến KHOA (Faculty)
- */
 public interface FacultyService {
     // Lấy danh sách toàn bộ các Khoa trong trường
     List<FacultyResponseDTO> getAllFaculties();

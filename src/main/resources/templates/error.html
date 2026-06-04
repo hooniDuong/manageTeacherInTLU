@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <meta charset="UTF-8">
+    <title>Lỗi hệ thống</title>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="nav-brand">Quản lý Giáo viên — ĐH Thăng Long</div>
+        <div class="nav-right">
+            <a href="/">Trang chủ</a>
+        </div>
+    </nav>
+
+    <div class="content">
+        <h1>Đã xảy ra lỗi</h1>
+        <h2>Chi tiết lỗi hệ thống:</h2>
+        
+        <p><strong>Mã lỗi (Status):</strong> <span th:text="${status}">500</span></p>
+        <p><strong>Loại lỗi (Error):</strong> <span th:text="${error}">Internal Server Error</span></p>
+        <p><strong>Nội dung lỗi (Message):</strong> <span th:text="${message}">Chi tiết lỗi</span></p>
+        <p><strong>Đường dẫn (Path):</strong> <span th:text="${path}">/url</span></p>
+        
+        <hr>
+        <a href="javascript:history.back()" class="back-btn">Quay lại trang trước</a>
+        <a href="/" class="back-link">Về trang chủ</a>
+    </div>
+
+</body>
+</html>

@@ -12,24 +12,17 @@ import org.springframework.web.bind.annotation.*;
 public class SemesterController {
     @Autowired private SemesterService service;
 
-    // Endpoint GET "/semesters" hiển thị danh sách học kỳ
     @GetMapping
     public String list(
-            // Lấy tham số tìm kiếm "search" từ form giao diện (không bắt buộc)
             @RequestParam(value = "search", required = false) String search, 
             Model model
     ) {
-        // Kiểm tra xem người dùng có truyền từ khóa tìm kiếm hay không
         if (search != null && !search.trim().isEmpty()) {
-            // Nếu có: Gọi service tìm kiếm các học kỳ theo tên học kỳ
             model.addAttribute("list", service.searchSemestersByName(search.trim()));
-            // Gửi từ khóa tìm kiếm ngược lại giao diện để duy trì ô nhập liệu
             model.addAttribute("search", search.trim());
         } else {
-            // Nếu không: Lấy danh sách toàn bộ các học kỳ từ DB
             model.addAttribute("list", service.getAllSemesters());
         }
-        // Trả về file HTML "semesters.html"
         return "semesters";
     }
 

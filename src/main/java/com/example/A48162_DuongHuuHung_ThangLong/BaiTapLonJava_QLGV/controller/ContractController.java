@@ -14,24 +14,18 @@ public class ContractController {
     @Autowired private ContractService service;
     @Autowired private TeacherRepository teacherRepo;
 
-    // Endpoint GET "/contracts" để hiển thị danh sách hợp đồng
     @GetMapping
     public String list(
             // Nhận từ khóa tìm kiếm "search" từ form giao diện gửi lên (không bắt buộc)
             @RequestParam(value = "search", required = false) String search, 
             Model model
     ) {
-        // Kiểm tra xem người dùng có thực hiện tìm kiếm hay không
         if (search != null && !search.trim().isEmpty()) {
-            // Nếu có: Gọi service tìm kiếm hợp đồng (theo loại hợp đồng, mã hợp đồng hoặc tên giảng viên)
             model.addAttribute("list", service.searchContracts(search.trim()));
-            // Gửi từ khóa tìm kiếm ngược lại ra ngoài giao diện để điền sẵn vào ô tìm kiếm
             model.addAttribute("search", search.trim());
         } else {
-            // Nếu không tìm kiếm: Gọi service lấy toàn bộ hợp đồng hiện có trong cơ sở dữ liệu
             model.addAttribute("list", service.getAllContracts());
         }
-        // Trả về giao diện "contracts.html"
         return "contracts";
     }
 

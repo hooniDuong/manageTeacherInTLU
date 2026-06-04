@@ -1,5 +1,4 @@
 package com.example.A48162_DuongHuuHung_ThangLong.BaiTapLonJava_QLGV.service.teachingLog;
-
 import com.example.A48162_DuongHuuHung_ThangLong.BaiTapLonJava_QLGV.entity.TeachingLog;
 import com.example.A48162_DuongHuuHung_ThangLong.BaiTapLonJava_QLGV.repository.TeachingLogRepository;
 import org.springframework.beans.factory.annotation.Autowired;

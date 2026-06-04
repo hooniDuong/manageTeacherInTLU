@@ -12,24 +12,17 @@ import org.springframework.web.bind.annotation.*;
 public class FacultyController {
     @Autowired private FacultyService service;
 
-    // Endpoint GET "/facultys" để hiển thị danh sách tất cả các khoa
     @GetMapping
     public String list(
-            // Lấy từ khóa tìm kiếm "search" từ thanh địa chỉ hoặc form (không bắt buộc)
             @RequestParam(value = "search", required = false) String search, 
             Model model
     ) {
-        // Kiểm tra xem từ khóa tìm kiếm có giá trị hợp lệ hay không
         if (search != null && !search.trim().isEmpty()) {
-            // Nếu có: Gọi service tìm kiếm khoa theo tên chứa từ khóa
             model.addAttribute("list", service.searchFacultiesByName(search.trim()));
-            // Gửi từ khóa tìm kiếm ngược lại view để lưu vết trên ô input
             model.addAttribute("search", search.trim());
         } else {
-            // Nếu không: Tải toàn bộ danh sách các khoa từ DB
             model.addAttribute("list", service.getAllFaculties());
         }
-        // Trả về giao diện HTML "facultys.html"
         return "facultys";
     }
 

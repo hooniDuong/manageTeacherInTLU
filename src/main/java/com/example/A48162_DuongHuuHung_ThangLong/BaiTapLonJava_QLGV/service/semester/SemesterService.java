@@ -2,9 +2,6 @@ package com.example.A48162_DuongHuuHung_ThangLong.BaiTapLonJava_QLGV.service.sem
 import com.example.A48162_DuongHuuHung_ThangLong.BaiTapLonJava_QLGV.entity.Semester;
 import java.util.List;
 
-/**
- * Service xử lý các nghiệp vụ liên quan đến HỌC KỲ (Semester)
- */
 public interface SemesterService {
     // Lấy danh sách các học kỳ
     List<Semester> getAllSemesters();

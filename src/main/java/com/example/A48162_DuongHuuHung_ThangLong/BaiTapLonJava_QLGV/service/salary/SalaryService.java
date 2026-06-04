@@ -3,9 +3,6 @@ import com.example.A48162_DuongHuuHung_ThangLong.BaiTapLonJava_QLGV.dto.salary.S
 import com.example.A48162_DuongHuuHung_ThangLong.BaiTapLonJava_QLGV.dto.salary.SalaryResponseDTO;
 import java.util.List;
 
-/**
- * Service xử lý các nghiệp vụ liên quan đến LƯƠNG THƯỞNG (Salary)
- */
 public interface SalaryService {
     // Lấy danh sách lịch sử trả lương của toàn trường
     List<SalaryResponseDTO> getAllSalaries();
